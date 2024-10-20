@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UpLearn</title>
+    <meta name="title" content="UpLearn">
+    <meta name="description" content="This is a education html template made by codewithsadee">
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./assets/font/font.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="preload" as="image" href="./assets/images/hero-banner.png">
+    <link rel="preload" as="image" href="./assets/images/hero-bg.png">
+</head>
+<body>
+    <div class="preloader" data-preloader>
+        <div class="circle" data-circle></div>
+    </div>
+    <div style="width: 99vw; height: 99vh;" id="wt-container"></div>
+
+    <script src="https://www.whiteboard.team/dist/api.js"></script>
+    <script type="text/javascript">
+        var wt = new api.WhiteboardTeam('#wt-container', {
+            clientId: 'db36ba12f23300d40bc1359155eaaf71',
+            boardCode: '1f4dc9ea0cf411f17aeb5dd2d9745ddb'
+        });
+    </script>
+    <script>
+        wt.addListener("ready", ctx => console.log("The whiteboard is ready and user is: ", ctx.uid ))
+        wt.waitUntilReady()
+            .then(ctx =>  console.log("The whiteboard is ready and user is: ", ctx.uid ))
+            .catch(error => console.log(error));
+        const preloader = document.querySelector("[data-preloader]");
+        const circle = document.querySelector("[data-circle]");
+            
+        window.addEventListener("load", function () {
+          preloader.classList.add("loaded");
+          circle.style.animation = "none";
+          document.body.classList.add("loaded");
+        });
+    </script>
+    
+    <style>
+        body{
+            /* background-color: #232323; */
+            color: white;
+            overflow: hidden;
+            /* background: url(../images/category-bg.png); */
+        }
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: hsl(357, 100%, 75%);
+            display: grid;
+            place-items: center;
+            z-index: 6;
+            transition: 0.25s ease;
+        }
+            
+        .preloader.loaded {
+            visibility: hidden;
+            opacity: 0;
+        }
+        
+        .preloader .circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 4px solid hsl(0, 0%, 100%);
+            border-block-start-color: transparent;
+            animation: rotate360 1s ease infinite;
+        }
+        
+        @keyframes rotate360 {
+            0% { transform: rotate(0); }
+            100% { transform: rotate(1turn); }
+        }
+
+    </style>
+</body>
+</html>
